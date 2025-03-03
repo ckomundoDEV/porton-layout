@@ -1,0 +1,323 @@
+/* Estilos personalizados para colores */
+
+:root {
+  --color-primary: #4caf50;       /* Verde principal */
+  --color-primary-dark: #388e3c;  /* Verde más oscuro */
+  --color-secondary: #ff9800;     /* Naranja cálido */
+  --color-secondary-dark: #f57c00; /* Naranja más oscuro */
+  --color-accent: #ffc107;        /* Amarillo dorado */
+  --color-accent-dark: #ffb300;   /* Amarillo dorado más oscuro */
+  --color-neutral: #607d8b;       /* Gris azulado neutro */
+  --color-neutral-light: #f5f5f5; /* Blanco hueso */
+  --color-highlight: #ffeb3b;     /* Amarillo brillante */
+  --color-white-cream: #fffde7;   /* Blanco crema */
+  --color-white-ivory: #fffff0;   /* Blanco marfil */
+  --color-white-snow: #fffafa;    /* Blanco nieve */
+  
+  /* Colores específicos para dark mode */
+  --color-dark-text: #f8fafc;      /* Texto claro para dark mode */
+  --color-dark-text-soft: #e0e0e0; /* Texto claro suave para dark mode */
+}
+
+.dark {
+  --color-primary: #66bb6a;       /* Verde más claro para dark mode */
+  --color-primary-dark: #4caf50;  /* Verde para dark mode */
+  --color-secondary: #ffa726;     /* Naranja cálido más brillante para dark mode */
+  --color-accent: #ffd54f;        /* Amarillo más brillante para dark mode */
+  --color-highlight: #fff176;     /* Amarillo más brillante para dark mode */
+  --color-neutral: #90a4ae;       /* Gris azulado más claro para dark mode */
+  --color-neutral-dark: #546e7a;  /* Gris azulado oscuro elegante */
+  --color-bg-dark: #263238;       /* Fondo oscuro neutro elegante */
+  --color-bg-card-dark: #37474f;  /* Fondo de tarjetas oscuro elegante */
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-primary-dark {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.bg-secondary-dark {
+  background-color: var(--color-secondary-dark) !important;
+}
+
+.bg-accent {
+  background-color: var(--color-accent) !important;
+}
+
+.bg-accent-dark {
+  background-color: var(--color-accent-dark) !important;
+}
+
+.bg-highlight {
+  background-color: var(--color-highlight) !important;
+}
+
+.bg-neutral {
+  background-color: var(--color-neutral) !important;
+}
+
+.bg-neutral-light {
+  background-color: var(--color-neutral-light) !important;
+}
+
+.bg-white-cream {
+  background-color: var(--color-white-cream) !important;
+}
+
+.bg-white-ivory {
+  background-color: var(--color-white-ivory) !important;
+}
+
+.bg-white-snow {
+  background-color: var(--color-white-snow) !important;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.text-highlight {
+  color: var(--color-highlight) !important;
+}
+
+/* Clases de texto mejoradas para dark mode */
+.dark-text-visible {
+  color: var(--color-dark-text) !important;
+}
+
+.dark-text-soft {
+  color: var(--color-dark-text-soft) !important;
+}
+
+.dark .dark\:text-visible {
+  color: var(--color-dark-text) !important;
+}
+
+.dark .dark\:text-soft {
+  color: var(--color-dark-text-soft) !important;
+}
+
+.border-primary {
+  border-color: var(--color-primary) !important;
+}
+
+.border-secondary {
+  border-color: var(--color-secondary) !important;
+}
+
+.border-accent {
+  border-color: var(--color-accent) !important;
+}
+
+.border-highlight {
+  border-color: var(--color-highlight) !important;
+}
+
+.hover\:bg-primary-dark:hover {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.hover\:bg-secondary:hover {
+  background-color: var(--color-secondary) !important;
+}
+
+.hover\:bg-accent:hover {
+  background-color: var(--color-accent) !important;
+}
+
+.hover\:bg-highlight:hover {
+  background-color: var(--color-highlight) !important;
+}
+
+/* Gradientes llamativos */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark)) !important;
+}
+
+.bg-gradient-vibrant {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)) !important;
+}
+
+.bg-gradient-fresh {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-highlight)) !important;
+}
+
+.bg-gradient-warm {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent)) !important;
+}
+
+/* Efectos de sombra mejorados */
+.shadow-elegant {
+  box-shadow: 0 10px 25px -5px rgba(76, 175, 80, 0.3) !important;
+}
+
+.dark .shadow-elegant {
+  box-shadow: 0 10px 25px -5px rgba(102, 187, 106, 0.3) !important;
+}
+
+.shadow-bold {
+  box-shadow: 0 15px 30px -10px rgba(255, 152, 0, 0.4) !important;
+}
+
+.dark .shadow-bold {
+  box-shadow: 0 15px 30px -10px rgba(255, 167, 38, 0.4) !important;
+}
+
+/* Efectos de borde */
+.border-fancy {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, var(--color-primary), var(--color-accent)) 1 !important;
+}
+
+/* Animaciones adicionales */
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out !important;
+}
+
+/* Nuevos efectos hover interactivos */
+.hover-float {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.hover-float:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2);
+}
+
+.dark .hover-float:hover {
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease-out;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(76, 175, 80, 0.3);
+}
+
+.dark .hover-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(102, 187, 106, 0.4);
+}
+
+.hover-glow-accent:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.3);
+}
+
+.dark .hover-glow-accent:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 213, 79, 0.4);
+}
+
+.hover-glow-secondary:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 152, 0, 0.3);
+}
+
+.dark .hover-glow-secondary:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 167, 38, 0.4);
+}
+
+.hover-rotate {
+  transition: transform 0.3s ease-out;
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-reveal {
+  overflow: hidden;
+  position: relative;
+}
+
+.hover-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease-out;
+}
+
+.hover-reveal:hover::after {
+  width: 100%;
+}
+
+.cursor-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.cursor-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle closest-side, rgba(255,255,255,0.15), transparent);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-out;
+  pointer-events: none;
+}
+
+.cursor-spotlight:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Fix para textos en dark mode */
+.dark .dark\:text-gray-300,
+.dark .dark\:text-gray-400,
+.dark .dark\:text-gray-500 {
+  color: var(--color-dark-text-soft) !important;
+}
+
+.dark .dark\:text-gray-200,
+.dark .dark\:text-gray-100,
+.dark .dark\:text-white {
+  color: var(--color-dark-text) !important;
+}
+
+/* Mejora para fondos en dark mode */
+.dark .dark\:bg-gray-900 {
+  background-color: var(--color-bg-dark) !important;
+}
+
+.dark .dark\:bg-gray-800 {
+  background-color: var(--color-bg-card-dark) !important;
+}
+
+.dark .dark\:bg-gray-700 {
+  background-color: var(--color-neutral-dark) !important;
+}
+
+/* Agregar más clases según sea necesario */
