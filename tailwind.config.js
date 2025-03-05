@@ -2,31 +2,52 @@
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-  './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-  './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/presentation/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        'primary-dark': 'var(--color-primary-dark)',
-        secondary: 'var(--color-secondary)',
-        'secondary-dark': 'var(--color-secondary-dark)',
-        accent: 'var(--color-accent)',
-        'accent-dark': 'var(--color-accent-dark)',
-        background: '#ffffff',
-        'background-dark': '#0f172a',
-        text: '#0f172a',
-        'text-dark': '#f8fafc',
+        primary: {
+          DEFAULT: '#8E44AD',
+          dark: '#7D3C98',
+          light: '#A569BD',
+        },
+        secondary: {
+          DEFAULT: '#2ECC71',
+          dark: '#27AE60',
+          light: '#58D68D',
+        },
+        accent: {
+          DEFAULT: '#E74C3C',
+          dark: '#C0392B',
+          light: '#F1948A',
+        },
+        highlight: {
+          DEFAULT: '#F1C40F',
+          dark: '#F39C12',
+          light: '#F4D03F',
+        },
+        neutral: {
+          light: '#F8F9FA',
+          DEFAULT: '#E9ECEF',
+          dark: '#DEE2E6',
+        },
       },
-      fontFamily: {
-        sans: ['var(--font-geist-sans)', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
+      spacing: {
+        'section': '5rem',
+        'container': '1200px',
+        'header': '4rem',
+      },
+      borderRadius: {
+        'xl': '1rem',
+        '2xl': '1.5rem',
       },
       boxShadow: {
-        'elegant': '0 4px 20px -2px rgba(0, 0, 0, 0.1)',
-        'elegant-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.25)',
+        'elegant': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'bold': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

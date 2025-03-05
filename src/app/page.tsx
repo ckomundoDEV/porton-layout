@@ -1,17 +1,17 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import HeroBanner from "@/components/HeroBanner";
-import ProductSection from "@/components/ProductSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import MapLocation from "@/components/MapLocation";
-import ProjectsSection from "@/components/ProjectsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ScrollAnimation from "@/components/ScrollAnimation";
-import AnimatedIcon from "@/components/AnimatedIcon";
-import ParallaxSection from "@/components/ParallaxSection";
+import { Navbar, Footer } from "@/components/layout";
+import { 
+  HeroBanner, 
+  ProductSection, 
+  FeaturesSection, 
+  ContactSection, 
+  MapLocation, 
+  ProjectsSection, 
+  TestimonialsSection, 
+  ParallaxSection 
+} from "@/components/sections";
+import { ScrollAnimation, AnimatedIcon } from "@/components/animations";
 import { useEffect } from "react";
 
 // Los metadatos estáticos ahora están en un archivo separado: app/metadata.ts

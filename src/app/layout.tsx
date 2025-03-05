@@ -3,6 +3,8 @@ import './styles.css';
 import { Inter } from 'next/font/google';
 import { Metadata, Viewport } from 'next';
 import { ThemeProvider } from "./providers/ThemeProvider";
+import { Toaster } from 'react-hot-toast';
+import ScrollToTopButton from '@/components/buttons/ScrollToTopButton';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -84,6 +86,31 @@ export default function RootLayout({
       <body className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
         <ThemeProvider>
           {children}
+          <ScrollToTopButton />
+          <Toaster 
+            position="top-right"
+            toastOptions={{
+              duration: 5000,
+              style: {
+                background: '#333',
+                color: '#fff',
+              },
+              success: {
+                duration: 3000,
+                iconTheme: {
+                  primary: '#4aed88',
+                  secondary: '#fff',
+                },
+              },
+              error: {
+                duration: 4000,
+                iconTheme: {
+                  primary: '#ff4b4b',
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
         </ThemeProvider>
         <script dangerouslySetInnerHTML={{__html: `
           (function() {
