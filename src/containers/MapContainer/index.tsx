@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MapLocation } from '@/components/sections';
+import { MapLocation } from '@/sections';
 
 type MapContainerProps = {
   address: string;

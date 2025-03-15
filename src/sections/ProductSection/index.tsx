@@ -9,74 +9,79 @@ import { categories, getCategoryColor } from "@/mocks/categories";
 import { buttonVariants, featureVariants, productCardVariants } from "@/mocks/animations";
 import { combineGridStyles } from "@/constants/layout";
 
-
+// Tipos mejorados
 type CategoryType = Category | 'todos';
 
-const ProductSection = () => {
+interface ProductSectionProps {
+  className?: string;
+}
+
+// Tipado de la función de filtrado de productos
+type FilterProductsType = () => typeof products;
+type HandleQuotationRequestType = (productId: number) => void;
+
+const ProductSection: React.FC<ProductSectionProps> = ({ className = "" }) => {
+  // Estados
   const [activeProduct, setActiveProduct] = useState<number | null>(null);
   const [hoveredButton, setHoveredButton] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('todos');
-  const [showQuotationForm, setShowQuotationForm] = useState(false);
+  const [showQuotationForm, setShowQuotationForm] = useState<boolean>(false);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
   
-  // Refs para cada tarjeta de producto
+  // Referencias
   const productRefs = useRef<Array<HTMLDivElement | null>>([]);
-  
-  // Refs para el efecto parallax
   const containerRef = useRef<HTMLDivElement>(null);
+  const productsContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Efecto parallax
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
   
-  // Ref para el contenedor de productos para mantenerlo visible
-  const productsContainerRef = useRef<HTMLDivElement>(null);
-  
-  // Filtrar productos según la categoría seleccionada
-  const filteredProducts = useCallback(() => {
+  // Filtrar productos - memoizada para evitar recálculos innecesarios
+  const filteredProducts: FilterProductsType = useCallback(() => {
     if (selectedCategory === 'todos') return products;
     return products.filter(product => product.category === selectedCategory);
   }, [selectedCategory]);
   
-  // Resetear la referencia del array de productos cuando cambia la categoría
+  // Efectos para manejar cambios de categoría
   useEffect(() => {
-    productRefs.current = productRefs.current.slice(0, filteredProducts().length);
+    // Resetear refs cuando cambia la categoría
+    const currentProducts = filteredProducts();
+    productRefs.current = productRefs.current.slice(0, currentProducts.length);
     
-    // Asegurarse de que el contenedor de productos sea visible al cambiar de categoría
+    // Asegurar visibilidad del contenedor de productos
     if (productsContainerRef.current) {
-      // Desplazarse suavemente hasta el contenedor
       const rect = productsContainerRef.current.getBoundingClientRect();
       
-      // Solo hacer scroll si el contenedor no está completamente visible
       if (rect.top < 0 || rect.bottom > window.innerHeight) {
-        const scrollPosition = window.scrollY + rect.top - 100; // Reducido el margen de 150 a 100
+        const scrollPosition = window.scrollY + rect.top - 100;
         window.scrollTo({
           top: scrollPosition,
           behavior: 'smooth'
         });
       }
     }
-  }, [selectedCategory, filteredProducts().length]);
+  }, [selectedCategory, filteredProducts]);
   
-  // Animaciones suavizadas con spring - Configuración más ligera
-  const springConfig = { stiffness: 50, damping: 20 }; // Reducido para mejor rendimiento en móviles
+  // Animaciones optimizadas para mejor rendimiento
+  const springConfig = { stiffness: 50, damping: 20 };
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [30, -30]), springConfig);
   const scale = useSpring(useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98]), springConfig);
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.9]), springConfig);
 
-  // Función para manejar la solicitud de cotización
-  const handleQuotationRequest = (productId: number) => {
+  // Manejadores de eventos con arrow functions tipadas
+  const handleQuotationRequest: HandleQuotationRequestType = (productId) => {
     setSelectedProductId(productId);
     setShowQuotationForm(true);
-    // Aquí podríamos hacer scroll hacia un formulario o mostrar un modal
     
-    // Como ejemplo simple, mostramos un alert
     const selectedProduct = products.find(p => p.id === productId);
     alert(`Solicitud de cotización para: ${selectedProduct?.name}\nPronto contactaremos contigo para darte más información sobre este producto.`);
   };
 
   return (
-    <section id="productos" className="section bg-gray-50 dark:bg-gray-900 overflow-hidden px-2 sm:px-0" ref={containerRef}>
+    <section id="productos" className={`section bg-gray-50 dark:bg-gray-900 overflow-hidden px-2 sm:px-0 ${className}`} ref={containerRef}>
       <motion.div 
         style={{ y, opacity, scale }}
         className="container-fluid px-4 sm:px-6 lg:px-8 relative mx-auto max-w-[2000px]"
@@ -88,26 +93,26 @@ const ProductSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, type: "spring", stiffness: 200 }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 relative inline-block">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-5 relative inline-block bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-200 dark:to-gray-400 bg-clip-text text-transparent drop-shadow-sm">
                 Nuestros Portones de Alta Gama
                 <motion.div 
-                  className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-1 bg-primary rounded-full"
+                  className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/70 rounded-full"
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 1, delay: 0.5 }}
                 />
               </h2>
             </motion.div>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4 sm:px-0">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4 sm:px-0 font-light leading-relaxed">
               Diseñamos y fabricamos portones automáticos que combinan elegancia, seguridad y tecnología de 
               vanguardia para hogares exclusivos.
             </p>
           </div>
         </ScrollAnimation>
 
-        {/* Navegación de categorías con pestañas elegantes */}
+        {/* Navegación de categorías mejorada */}
         <div className="mb-10 md:mb-16 relative">
-          <div className="flex flex-wrap justify-center items-center border-b border-gray-200 dark:border-gray-700 relative">
+          <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 border-b border-gray-200 dark:border-gray-700 relative">
             {categories.map((category) => {
               const isActive = selectedCategory === category.id;
               const categoryColors = getCategoryColor(category.id as Category);
@@ -115,9 +120,9 @@ const ProductSection = () => {
               return (
                 <div key={category.id} className="relative">
                   <motion.button
-                    className={`px-3 sm:px-4 md:px-6 py-3 md:py-4 text-sm md:text-base font-medium relative z-10 transition-colors ${
+                    className={`px-3 sm:px-5 md:px-6 py-3 md:py-4 text-sm md:text-base font-medium relative z-10 transition-all duration-300 ${
                       isActive 
-                        ? categoryColors.text
+                        ? `${categoryColors.text} font-semibold`
                         : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                     }`}
                     onClick={() => setSelectedCategory(category.id as CategoryType)}
@@ -129,7 +134,7 @@ const ProductSection = () => {
                     
                     {isActive && (
                       <motion.div
-                        className={`absolute bottom-0 left-0 right-0 h-0.5 ${categoryColors.bg}`}
+                        className={`absolute bottom-0 left-0 right-0 h-1 ${categoryColors.bg}`}
                         layoutId="categoryIndicator"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -142,17 +147,17 @@ const ProductSection = () => {
             })}
           </div>
           
-          {/* Indicador de categoría seleccionada con animación de desplazamiento */}
+          {/* Indicador de categoría seleccionada mejorado */}
           <motion.div
-            className="absolute top-full left-0 mt-1 sm:mt-2 flex justify-center w-full"
+            className="absolute top-full left-0 mt-3 sm:mt-4 flex justify-center w-full"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             key={selectedCategory}
           >
-            <div className="px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium bg-opacity-10 backdrop-blur-sm inline-flex items-center space-x-1 sm:space-x-2">
-              <div className={`w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full ${getCategoryColor(selectedCategory).bg}`}></div>
-              <span>
+            <div className="px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-opacity-10 backdrop-blur-sm inline-flex items-center space-x-2 sm:space-x-3 bg-gray-100 dark:bg-gray-800 shadow-sm">
+              <div className={`w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full ${getCategoryColor(selectedCategory).bg}`}></div>
+              <span className="text-gray-700 dark:text-gray-300">
                 {selectedCategory === "todos" ? "Mostrando todos los portones" :
                  selectedCategory === "madera" ? "Portones de madera seleccionados" :
                  selectedCategory === "metal" ? "Portones de metal seleccionados" :
@@ -162,7 +167,7 @@ const ProductSection = () => {
           </motion.div>
         </div>
 
-        {/* Contenedor de productos con referencia para asegurar visibilidad */}
+        {/* Contenedor de productos */}
         <div ref={productsContainerRef} className={combineGridStyles(['responsive', 'gaps'])}>
           <AnimatePresence mode="wait">
             {filteredProducts().map((product, index) => (
@@ -181,7 +186,7 @@ const ProductSection = () => {
                 whileHover="hover"
                 className="bg-white dark:bg-gray-800 rounded-xl shadow-elegant overflow-hidden transform-gpu transition-transform duration-300 flex flex-col h-full sm:max-w-md lg:max-w-sm 2xl:max-w-md mx-auto w-full"
               >
-                {/* Contenedor de imagen con altura ajustada para tablets/laptops */}
+                {/* Imagen del producto */}
                 <div className="relative h-48 sm:h-56 md:h-64 w-full overflow-hidden flex-shrink-0" style={{ zIndex: 10 }}>
                   <motion.div
                     initial={{ scale: 1 }}
@@ -213,30 +218,31 @@ const ProductSection = () => {
                      product.category === "metal" ? "Metal" : "Eléctrico"}
                   </motion.div>
                   
-                  {/* Overlay que aparece al hacer hover - simplificado */}
+                  {/* Overlay de hover */}
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ 
-                      opacity: activeProduct === product.id ? 0.3 : 0 // Reducido de 0.4 a 0.3
+                      opacity: activeProduct === product.id ? 0.3 : 0
                     }}
-                    transition={{ duration: 0.2 }} // Más rápido
+                    transition={{ duration: 0.2 }}
                     className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
                   />
                   
-                  {/* Etiqueta que aparece con el precio */}
+                  {/* Etiqueta de precio */}
                   <motion.div
-                    initial={{ x: -30, opacity: 0 }} // Reducido de -50 a -30
+                    initial={{ x: -30, opacity: 0 }}
                     animate={{ 
                       x: activeProduct === product.id ? 0 : -30,
                       opacity: activeProduct === product.id ? 1 : 0
                     }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 150 }} // Más simple
+                    transition={{ duration: 0.3, type: "spring", stiffness: 150 }}
                     className={`absolute top-2 sm:top-4 left-0 py-1 px-2 sm:px-4 rounded-r-md text-sm sm:text-base font-bold text-white ${getCategoryColor(product.category).bg}`}
                   >
                     {product.price}
                   </motion.div>
                 </div>
                 
+                {/* Información del producto */}
                 <div className="p-4 sm:p-6 md:p-8 relative z-10 flex-grow flex flex-col justify-between">
                   <motion.h3 
                     className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3"
@@ -256,6 +262,7 @@ const ProductSection = () => {
                     {product.description}
                   </motion.p>
                   
+                  {/* Características */}
                   <motion.div 
                     className="mb-4 sm:mb-6"
                     initial={{ opacity: 0 }}
@@ -293,6 +300,7 @@ const ProductSection = () => {
                     </ul>
                   </motion.div>
                   
+                  {/* Precio y botón */}
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-auto pt-4 sm:pt-6 gap-3 sm:gap-0">
                     <span className="text-base sm:text-lg md:text-xl font-bold text-primary text-center sm:text-left">
                       {product.price}
