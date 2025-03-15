@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScrollAnimation } from "@/presentation/components/animations";
 import {  Category } from "@/core/domain/entities/Product";
 import { buttonVariants, featureVariants, productCardVariants } from "@/mocks/animations";
 import { getCategoryColor } from "@/shared/constants/categories";
 import { ProductSectionPresenterProps } from "@/interfaces/product";
+import { ScrollAnimation } from "@/components";
 
 
 

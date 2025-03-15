@@ -47,4 +47,28 @@ export const isElementInViewport = (element: HTMLElement): boolean => {
  */
 export const getScrollPosition = (): number => {
   return window.pageYOffset || document.documentElement.scrollTop;
+};
+
+/**
+ * Verifica si un elemento está parcialmente visible en el viewport
+ * @param element - El elemento a verificar
+ * @param threshold - El umbral de visibilidad (0-1)
+ * @returns true si el elemento está parcialmente visible, false si no lo está
+ */
+export const isElementPartiallyVisible = (element: HTMLElement, threshold: number = 0.3): boolean => {
+  const rect = element.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+  
+  // Elemento visible si al menos un porcentaje (threshold) está en el viewport
+  const vertVisible = 
+    (rect.top >= 0 && rect.top <= windowHeight * (1 - threshold)) || 
+    (rect.bottom >= windowHeight * threshold && rect.bottom <= windowHeight) ||
+    (rect.top <= 0 && rect.bottom >= windowHeight);
+    
+  const horizVisible = 
+    rect.left >= 0 && 
+    rect.right <= windowWidth;
+    
+  return vertVisible && horizVisible;
 }; 

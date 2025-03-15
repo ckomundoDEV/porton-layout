@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import {  useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { getAnimationVariants } from "@/mocks/animations";
+import {  getAnimationVariants } from "@/mocks/animations";
 import { ScrollAnimationProps } from "@/interfaces/animations";
+
 
 const ScrollAnimation = ({
   children,
