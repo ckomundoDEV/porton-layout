@@ -1,19 +1,11 @@
 import { FC } from 'react';
-import { 
-  HeroBanner, 
-  ProductSection, 
-  FeaturesSection, 
-  ContactSection, 
-  MapLocation, 
-  ProjectsSection, 
-  TestimonialsSection, 
-  ParallaxSection 
-} from '@/components/sections';
+  
+
 import { Navbar, Footer } from '@/components/layout';
 import { ServiceCard } from '@/components/ui/ServiceCard';
 import { ScrollAnimation } from '@/components/animations';
 import { LandingContainerProps } from '@/interfaces/landing';
-
+import { HeroBanner, ProductSection, FeaturesSection, ParallaxSection, ProjectsSection, TestimonialsSection, ContactSection, MapLocation } from '@/sections';
 
 
 const LandingContainer: FC<LandingContainerProps> = ({

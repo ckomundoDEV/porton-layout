@@ -9,7 +9,7 @@ export const categories: CategoryItem[] = [
   { id: "todos", name: "Todos los Portones" },
   { id: "madera", name: "Portones de Madera" },
   { id: "metal", name: "Portones de Metal" },
-  { id: "electricos", name: "Portones Eléctricos" }
+  { id: "electrico", name: "Portones Eléctricos" }
 ];
 
 export const getCategoryColor = (category: Category) => {
@@ -24,7 +24,7 @@ export const getCategoryColor = (category: Category) => {
       text: "text-blue-500",
       gradient: "from-blue-500/30 to-indigo-500/30 dark:from-blue-900/30 dark:to-indigo-900/30"
     };
-    case "electricos": return {
+    case "electrico": return {
       bg: "bg-emerald-500",
       text: "text-emerald-500",
       gradient: "from-emerald-500/30 to-cyan-500/30 dark:from-emerald-900/30 dark:to-cyan-900/30"

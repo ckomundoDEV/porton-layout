@@ -5,6 +5,14 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/presentation/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/containers/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/sections/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/core/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/interfaces/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/mocks/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/presentation/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/presentation/components/**/*.{js,ts,jsx,tsx,mdx}',
+    
   ],
   darkMode: 'class',
   theme: {

@@ -1,4 +1,4 @@
-export type Category = "madera" | "metal" | "electricos" | "todos";
+export type Category = "madera" | "metal" | "electrico" | "todos";
 
 export type Product = {
   id: number;
@@ -39,7 +39,7 @@ export const products: Product[] = [
       "Garantía de 7 años"
     ],
     image: "/images/gran-puerta-corredera-automatica-control-remoto-concepto-seguridad-proteccion_641010-27462.jpg",
-    category: "electricos"
+    category: "electrico"
   },
   {
     id: 3,
@@ -69,7 +69,7 @@ export const products: Product[] = [
       "Garantía de 10 años"
     ],
     image: "/images/WhatsApp-Image-2024-06-13-at-9.43.41-PM-4-1024x576.jpeg",
-    category: "electricos"
+    category: "electrico"
   },
   {
     id: 5,
@@ -114,7 +114,7 @@ export const products: Product[] = [
       "Garantía de 10 años"
     ],
     image: "/images/WhatsApp-Image-2024-06-13-at-9.43.42-PM-2-1024x576.jpeg",
-    category: "electricos"
+    category: "electrico"
   },
   {
     id: 8,
